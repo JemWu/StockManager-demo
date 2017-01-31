@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+
+    <TextView
+        android:id="@+id/goods_brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/goods_model"
+        android:text="品牌:"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/goods_brand_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/goods_brand"
+        android:layout_alignBottom="@+id/goods_brand"
+        android:layout_toEndOf="@+id/goods_brand"
+        android:text="品牌"
+        android:textSize="30dp" />
+
+
+    <TextView
+
+        android:id="@+id/goods_model"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/goods_brand"
+        android:layout_marginTop="77dp"
+        android:text="型号:"
+        android:textSize="30dp"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/goods_model_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/goods_model"
+        android:layout_alignBottom="@+id/goods_model"
+        android:layout_toEndOf="@+id/goods_model"
+        android:text="型号"
+        android:textSize="30dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/goods_model"
+        android:layout_marginTop="92dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:onClick="change_name"
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="232db"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="1234"
+            android:textSize="30dp" />
+
+        <ImageView
+
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#000" />
+
+        <ImageButton
+            android:id="@+id/changePrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/undata" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/delete" />
+
+        <TextView
+            android:id="@+id/goodsNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="库存数量"
+            android:textSize="40dp" />
+
+        <ImageButton
+            android:id="@+id/add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/add" />
+    </LinearLayout>
+</RelativeLayout>
