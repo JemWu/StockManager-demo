@@ -94,7 +94,8 @@ public class brand_list extends Activity implements AdapterView.OnItemClickListe
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         add_text = edit.getText().toString();
-                        if (add_text != null) {
+                        
+                        if (!add_text.isEmpty()) {
                             if (brand_list_data.contains(add_text)) {
                                 new AlertDialog.Builder(brand_list.this)
                                         .setTitle("提示")
@@ -107,7 +108,14 @@ public class brand_list extends Activity implements AdapterView.OnItemClickListe
                                 myAdapter.notifyDataSetChanged();
                                 addBrandToDb();
                             }
+                        }else{
+                            new AlertDialog.Builder(brand_list.this)
+                                    .setTitle("提示")
+                                    .setMessage("输入不能为空")
+                                    .setPositiveButton("确定", null)
+                                    .show();
                         }
+
 
                     }
                 })
