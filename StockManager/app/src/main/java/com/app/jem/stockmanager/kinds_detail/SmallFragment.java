@@ -174,7 +174,7 @@ public class SmallFragment extends Fragment implements View.OnClickListener, Ada
                 })
                 .setNegativeButton("取消", null)
                 .show();
-        return false;
+        return ture;
     }
 
     class mAdapter extends BaseAdapter {
