@@ -168,7 +168,7 @@ public class brand_list extends Activity implements AdapterView.OnItemClickListe
                 .setNegativeButton("取消", null)
                 .show();
 
-        return false;
+        return ture;
     }
 
 
