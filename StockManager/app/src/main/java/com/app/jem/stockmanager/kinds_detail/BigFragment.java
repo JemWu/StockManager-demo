@@ -188,7 +188,7 @@ public class BigFragment extends Fragment implements View.OnClickListener, Adapt
                 .setNegativeButton("取消", null)
                 .show();
 
-        return false;
+        return ture;
     }
 
     class mAdapter extends BaseAdapter {
