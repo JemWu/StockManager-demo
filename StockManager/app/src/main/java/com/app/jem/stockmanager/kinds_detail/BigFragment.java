@@ -102,7 +102,7 @@ public class BigFragment extends Fragment implements View.OnClickListener, Adapt
                                     .setPositiveButton("确定", null)
                                     .show();
                         }
-
+                    }
                 })
                 .setNegativeButton("取消", null)
                 .show();
