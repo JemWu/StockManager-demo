@@ -82,13 +82,27 @@ public class BigFragment extends Fragment implements View.OnClickListener, Adapt
                     public void onClick(DialogInterface dialog, int which) {
                         add_text = edit.getText().toString();
 
-                        if (add_text != null) {
-                            itemlistdata.add(add_text);
-                            myAdapter.notifyDataSetChanged();
-                            addKindsToDb();
+                      if (!add_text.isEmpty()) {
+                            if (itemlistdata.contains(add_text)) {
+                                new AlertDialog.Builder(getActivity())
+                                        .setTitle("提示")
+                                        .setMessage("该商品类已存在")
+                                        .setPositiveButton("确定", null)
+                                        .show();
+
+                            } else {
+                                itemlistdata.add(add_text);
+                                myAdapter.notifyDataSetChanged();
+                                addKindsToDb();
+                            }
+                        }else{
+                            new AlertDialog.Builder(getActivity())
+                                    .setTitle("提示")
+                                    .setMessage("输入不能为空")
+                                    .setPositiveButton("确定", null)
+                                    .show();
                         }
 
-                    }
                 })
                 .setNegativeButton("取消", null)
                 .show();
