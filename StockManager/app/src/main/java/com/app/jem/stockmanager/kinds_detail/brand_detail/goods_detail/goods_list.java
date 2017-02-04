@@ -100,7 +100,7 @@ public class goods_list extends Activity implements AdapterView.OnItemClickListe
                         add_text = edit.getText().toString();
                         goods_item new_item = new goods_item();
 
-                        if (add_text != null) {
+                        if (!add_text.isEmpty()) {
                             new_item.setModel(add_text);
 
                             if (goods_list_data.contains(add_text)) {
@@ -115,6 +115,12 @@ public class goods_list extends Activity implements AdapterView.OnItemClickListe
                                 myAdapter.notifyDataSetChanged();
                                 addGoodsToDb();
                             }
+                        }else{
+                            new AlertDialog.Builder(goods_list.this)
+                                    .setTitle("提示")
+                                    .setMessage("输入不能为空")
+                                    .setPositiveButton("确定", null)
+                                    .show();
                         }
 
                     }
