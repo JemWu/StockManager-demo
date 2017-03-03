@@ -162,7 +162,7 @@ public class goods_list extends Activity implements AdapterView.OnItemClickListe
                 .setNegativeButton("取消", null)
                 .show();
 
-        return ture;
+        return false;
     }
 
     class mAdapter extends BaseAdapter {
