@@ -80,6 +80,7 @@ public class brand_list extends Activity implements AdapterView.OnItemClickListe
         goods_intent1.putExtra("brands", item_1);
         goods_intent1.putExtra("table_name", item_2);
         startActivity(goods_intent1);
+
         db2.close();
     }
 
@@ -94,7 +95,6 @@ public class brand_list extends Activity implements AdapterView.OnItemClickListe
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         add_text = edit.getText().toString();
-                        
                         if (!add_text.isEmpty()) {
                             if (brand_list_data.contains(add_text)) {
                                 new AlertDialog.Builder(brand_list.this)
@@ -115,7 +115,6 @@ public class brand_list extends Activity implements AdapterView.OnItemClickListe
                                     .setPositiveButton("确定", null)
                                     .show();
                         }
-
 
                     }
                 })
@@ -168,7 +167,7 @@ public class brand_list extends Activity implements AdapterView.OnItemClickListe
                 .setNegativeButton("取消", null)
                 .show();
 
-        return ture;
+        return true;
     }
 
 

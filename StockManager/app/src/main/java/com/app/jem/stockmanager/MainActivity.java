@@ -1,6 +1,5 @@
 package com.app.jem.stockmanager;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.app.jem.stockmanager.data.Db_Data;
 import com.app.jem.stockmanager.kinds_detail.BigFragment;
 import com.app.jem.stockmanager.kinds_detail.SmallFragment;
 
@@ -26,8 +24,10 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        setContentView(R.layout.activity_main);
+        // 隐藏actionbar
+        getSupportActionBar().hide();
         addFragment();
         initView();
 

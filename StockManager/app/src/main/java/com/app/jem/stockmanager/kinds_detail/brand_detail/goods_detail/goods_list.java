@@ -85,6 +85,7 @@ public class goods_list extends Activity implements AdapterView.OnItemClickListe
         detailIntent.putExtra("detail_item", position);
         detailIntent.putExtra("detail_brand", click_item_brand);
         startActivity(detailIntent);
+
         db3.close();
     }
 
@@ -162,7 +163,7 @@ public class goods_list extends Activity implements AdapterView.OnItemClickListe
                 .setNegativeButton("取消", null)
                 .show();
 
-        return false;
+        return true;
     }
 
     class mAdapter extends BaseAdapter {
