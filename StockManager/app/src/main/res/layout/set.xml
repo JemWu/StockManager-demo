@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:alpha="0.5"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/backup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:drawableLeft="@drawable/backup"
+        android:padding="20dp"
+        android:text="备份"
+        android:textSize="30sp" />
+
+
+    <Button
+        android:id="@+id/restore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:drawableLeft="@drawable/restore"
+        android:padding="20dp"
+        android:text="还原"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/sync"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:drawableLeft="@drawable/sync"
+        android:padding="20dp"
+        android:text="数据同步"
+        android:textSize="30sp" />
+</LinearLayout>

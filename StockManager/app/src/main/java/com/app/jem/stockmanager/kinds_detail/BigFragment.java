@@ -1,7 +1,5 @@
 package com.app.jem.stockmanager.kinds_detail;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,17 +12,15 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.OvershootInterpolator;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.app.jem.stockmanager.R;
-import com.app.jem.stockmanager.data.BackupAndRestore;
+import com.app.jem.stockmanager.Settings;
 import com.app.jem.stockmanager.data.Db_Data;
 import com.app.jem.stockmanager.kinds_detail.brand_detail.brand_list;
 
@@ -37,14 +33,15 @@ import java.util.List;
 
 public class BigFragment extends Fragment implements View.OnClickListener,
         AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+
     private ListView listView;
-    private ImageButton ig, sync, up, down;
+    private ImageButton ig, set;
     private SQLiteDatabase db1, db2;
     private boolean flag;
     private String add_text;
     private List<String> itemlistdata = new ArrayList<>();
     private List<String> del_brandList = new ArrayList<>();
-    private List<ImageButton> imaglist = new ArrayList<>();
+
     private mAdapter myAdapter;
 
     @Nullable
@@ -54,52 +51,19 @@ public class BigFragment extends Fragment implements View.OnClickListener,
         View view = inflater.inflate(R.layout.list, null);
         listView = (ListView) view.findViewById(R.id.kinds_list);
         ig = (ImageButton) view.findViewById(R.id.kinds_addButton);
-        sync = (ImageButton) view.findViewById(R.id.backup_restore);
-        up = (ImageButton) view.findViewById(R.id.backup);
-        down = (ImageButton) view.findViewById(R.id.restore);
-        imaglist.add(up);
-        imaglist.add(down);
+        set = (ImageButton) view.findViewById(R.id.set);
+
 
         initData();
         myAdapter = new mAdapter();
         listView.setAdapter(myAdapter);
         ig.setOnClickListener(this);
-        sync.setOnClickListener(this);
-        up.setOnClickListener(this);
-        down.setOnClickListener(this);
+        set.setOnClickListener(this);
 
 
         listView.setOnItemClickListener(this);
         listView.setOnItemLongClickListener(this);
         return view;
-    }
-
-    private void CloseAnimator() {
-        for (int i = 0; i < imaglist.size(); i++) {
-            ObjectAnimator animatorX = ObjectAnimator.ofFloat(imaglist.get(i), "translationX",
-                    (float) (-100 * (i + 1)), 0f);
-            AnimatorSet set = new AnimatorSet();
-            set.playTogether(animatorX);
-            set.setDuration(300);
-            set.setStartDelay(1 * 150);
-            set.setInterpolator(new OvershootInterpolator());
-            set.start();
-            flag = false;
-        }
-    }
-
-    private void OpenAnimator() {
-        for (int i = 0; i < imaglist.size(); i++) {
-            ObjectAnimator animatorX = ObjectAnimator.ofFloat(imaglist.get(i), "translationX",
-                    0f, (float) (-100 * (i + 1)));
-            AnimatorSet set = new AnimatorSet();
-            set.playTogether(animatorX);
-            set.setDuration(300);
-            set.setStartDelay(1 * 150);
-            set.setInterpolator(new OvershootInterpolator());
-            set.start();
-            flag = true;
-        }
     }
 
 
@@ -119,6 +83,7 @@ public class BigFragment extends Fragment implements View.OnClickListener,
     //添加按键
     @Override
     public void onClick(View v) {
+
         switch (v.getId()) {
             case R.id.kinds_addButton:
                 final EditText edit = new EditText(getActivity());
@@ -157,32 +122,13 @@ public class BigFragment extends Fragment implements View.OnClickListener,
                         .setNegativeButton("取消", null)
                         .show();
                 break;
-
-            case R.id.backup_restore:
-                if (flag == false) {
-                    OpenAnimator();
-                } else {
-                    CloseAnimator();
-                }
+            case R.id.set:
+                Intent intent = new Intent(getActivity(), Settings.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.zoon_in, R.anim.zoon_out);
                 break;
 
-            case R.id.backup:
-                BackupAndRestore thread1 = (BackupAndRestore) new BackupAndRestore(getActivity())
-                        .execute("backupData");
-                CloseAnimator();
-                Toast.makeText(getActivity(), "备份已完成", Toast.LENGTH_SHORT).show();
-                thread1.cancel(true);
-                break;
 
-            case R.id.restore:
-                BackupAndRestore thread2 = (BackupAndRestore) new BackupAndRestore(getActivity())
-                        .execute("restoreData");
-                Toast.makeText(getActivity(), "还原已完成", Toast.LENGTH_SHORT).show();
-                thread2.cancel(true);
-                initData();
-                listView.setAdapter(myAdapter);
-                CloseAnimator();
-                break;
         }
 
 

@@ -6,6 +6,9 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.BLUETOOTH"></uses-permission>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED"/>
 
     <application
         android:allowBackup="true"
@@ -24,10 +27,13 @@
             </intent-filter>
         </activity>
 
-
+<activity android:name=".Settings"/>
         <activity android:name=".kinds_detail.brand_detail.brand_list" />
         <activity android:name=".kinds_detail.brand_detail.goods_detail.goods_list" />
         <activity android:name=".kinds_detail.brand_detail.goods_detail.goods_item_detail.goods_detail" />
+        <activity android:name=".Sync" />
+        <activity android:name=".Send" />
+        <activity android:name=".Accept" />
     </application>
 
 </manifest>

@@ -24,7 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.jem.stockmanager.R;
-import com.app.jem.stockmanager.data.BackupAndRestore;
+import com.app.jem.stockmanager.Settings;
+import com.app.jem.stockmanager.utils.BackupAndRestore;
 import com.app.jem.stockmanager.data.Db_Data;
 import com.app.jem.stockmanager.kinds_detail.brand_detail.brand_list;
 
@@ -37,7 +38,7 @@ import java.util.List;
 
 public class SmallFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
     private ListView listView;
-    private ImageButton ig, sync,up,down;
+    private ImageButton ig,set;
     private String add_text;
     private mAdapter myAdapter;
     private SQLiteDatabase db1, db2;
@@ -52,21 +53,17 @@ public class SmallFragment extends Fragment implements View.OnClickListener, Ada
         View view = inflater.inflate(R.layout.list, null);
         listView = (ListView) view.findViewById(R.id.kinds_list);
         ig = (ImageButton) view.findViewById(R.id.kinds_addButton);
-        sync = (ImageButton) view.findViewById(R.id.backup_restore);
-        up = (ImageButton) view.findViewById(R.id.backup);
-        down = (ImageButton) view.findViewById(R.id.restore);
-        imaglist.add(up);
-        imaglist.add(down);
-        sync.setOnClickListener(this);
-        up .setOnClickListener(this);
-        down.setOnClickListener(this);
+        set = (ImageButton) view.findViewById(R.id.set);
+
+        set.setOnClickListener(this);
+        ig.setOnClickListener(this);
 
         initData();
         myAdapter = new mAdapter();
         listView.setAdapter(myAdapter);
         listView.setOnItemClickListener(this);
         listView.setOnItemLongClickListener(this);
-        ig.setOnClickListener(this);
+
         return view;
     }
 
@@ -121,60 +118,19 @@ public class SmallFragment extends Fragment implements View.OnClickListener, Ada
                         .show();
             break;
 
-            case R.id.backup_restore:
-                if (!flag) {
-                    OpenAnimator();
-                } else {
-                    CloseAnimator();
-                }
+            case R.id.set:
+                Intent intent = new Intent(getActivity(), Settings.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.zoon_in, R.anim.zoon_out);
                 break;
 
-            case R.id.backup:
-                BackupAndRestore thread1 = (BackupAndRestore) new BackupAndRestore(getActivity()).execute("backupData");
-                CloseAnimator();
-                Toast.makeText(getActivity(),"备份已完成",Toast.LENGTH_SHORT).show();
-                thread1.cancel(true);
-                break;
 
-            case R.id.restore:
-                BackupAndRestore thread2 = (BackupAndRestore)new BackupAndRestore(getActivity()).execute("restoreData");
-                Toast.makeText(getActivity(),"还原已完成",Toast.LENGTH_SHORT).show();
-                thread2.cancel(true);
-
-                initData();
-                listView.setAdapter(myAdapter);
-                CloseAnimator();
-                break;
         }
 
 
     }
 
-    private void CloseAnimator() {
-        for (int i = 0; i<imaglist.size();i++){
-            ObjectAnimator animatorX = ObjectAnimator.ofFloat(imaglist.get(i), "translationX",(float) (-100*(i+1)),0f);
-            AnimatorSet set = new AnimatorSet();
-            set.playTogether(animatorX);
-            set.setDuration(300);
-            set.setStartDelay(1 * 150);
-            set.setInterpolator(new OvershootInterpolator());
-            set.start();
-            flag=false;
-        }
-    }
 
-    private void OpenAnimator() {
-        for (int i = 0; i<imaglist.size();i++){
-            ObjectAnimator animatorX = ObjectAnimator.ofFloat(imaglist.get(i), "translationX", 0f, (float) (-100*(i+1)));
-            AnimatorSet set = new AnimatorSet();
-            set.playTogether(animatorX);
-            set.setDuration(300);
-            set.setStartDelay(1 * 150);
-            set.setInterpolator(new OvershootInterpolator());
-            set.start();
-            flag=true;
-        }
-    }
 
     private void addKindsToDb() {
         /**

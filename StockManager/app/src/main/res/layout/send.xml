@@ -1,0 +1,82 @@
+<com.app.jem.stockmanager.view.RippleBackground xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:rb_color="#0099CC"
+    app:rb_duration="3000"
+    app:rb_radius="32dp"
+    app:rb_rippleAmount="6"
+    app:rb_scale="6">
+
+    <ImageView
+        android:id="@+id/centerImage"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/phone1" />
+
+    <ImageView
+        android:id="@+id/foundDevice"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_above="@+id/phoneName"
+        android:layout_marginRight="6dp"
+        android:layout_toStartOf="@+id/centerImage"
+        android:src="@drawable/phone2"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/phoneName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/centerImage"
+        android:layout_alignStart="@+id/foundDevice"
+        android:layout_marginBottom="11dp"
+        android:gravity="center"
+        android:visibility="invisible" />
+
+
+    <ImageView
+        android:id="@+id/foundDevice2"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_above="@+id/phoneName2"
+        android:layout_marginRight="6dp"
+        android:layout_marginStart="32dp"
+        android:layout_toEndOf="@+id/centerImage"
+        android:src="@drawable/phone2"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/phoneName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/centerImage"
+        android:layout_alignStart="@+id/foundDevice2"
+        android:gravity="center"
+        android:visibility="invisible" />
+
+
+    <ImageView
+        android:id="@+id/foundDevice3"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignEnd="@+id/centerImage"
+        android:layout_below="@+id/phoneName2"
+        android:layout_marginEnd="29dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="19dp"
+        android:src="@drawable/phone2"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/phoneName3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/foundDevice3"
+        android:layout_below="@+id/foundDevice3"
+        android:gravity="center"
+        android:visibility="invisible" />
+
+</com.app.jem.stockmanager.view.RippleBackground>
